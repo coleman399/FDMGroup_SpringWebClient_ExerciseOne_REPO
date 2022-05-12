@@ -38,4 +38,12 @@ public class UserService {
         userClient.deleteUser(username);
     }
 
+    public String checkPassword(User user, String password) {
+        if (user.getPassword().equals(password)) {
+            return "redirect:home";
+        } else {
+            return "redirect:/";
+        }
+    }
+
 }

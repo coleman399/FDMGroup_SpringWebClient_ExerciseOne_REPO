@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>🌟 Index - Login 🌟</title>
+    <title>🌟 Index - Home 🌟</title>
     <meta name="description" content="write a description here..." />
     <meta name="keywords" content="search engines use these keywords to find websites" />
     <meta name="author" content="self-explanatory" />
@@ -21,12 +21,15 @@
             <div class="col-4">
             </div>
             <div class="col-4" style="text-align:center">
-                <h1>Login</h1>
-                <form th:action="@{/}" method="post" >
-                    <input class="form-control" type="text" placeholder="Username" th:name="username"><br>
-                    <input class="form-control" type="password" placeholder="Password" th:name="password"><br>
-                    <input class="btn btn-primary" type="submit" value="LOGIN">
-                </form>
+                <h1>Users</h1>
+                <a class="btn btn-primary" th:href="@{/createUser}" style="margin-bottom: 2px;">create a new user</a>
+                <ul class="list-group" th:each="user: ${users}">
+                    <li class="list-group-item" th:text="${user}"></li>
+                    <a class="btn btn-primary" th:href="@{/updateUser/{username}(username=${user.username})}"
+                        style="padding: 3px; margin-bottom: 2px;">Update</a>
+                    <a class="btn btn-primary" th:href="@{/deleteUser/{username}(username=${user.username})}"
+                        style="padding: 3px; margin-bottom: 2px;">Delete</a>
+                </ul>
             </div>
             <div class="col-4">
             </div>

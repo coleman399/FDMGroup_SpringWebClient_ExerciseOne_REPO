@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -22,11 +23,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String goToIndex(Model model) {
+    @GetMapping({"/", "index"})
+    public String goToIndex() {
+        return "index";
+    } 
+
+    @PostMapping("/")
+    public String goToHomePage(@RequestParam("username") String username, @RequestParam("password") String password) {
+        User user = userService.getUser(username);
+        String checkedPassword = userService.checkPassword(user, password);
+        return checkedPassword;
+    }
+
+    @GetMapping("/home")
+    public String displayUsersAtHomePage(Model model) {
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
-        return "index";
+        return "home";
     }
 
     @GetMapping("/{username}")
@@ -45,7 +58,7 @@ public class UserController {
     @PostMapping("/createUser")
     public String createUser(User user) {
         userService.generateUser(user);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @GetMapping("/updateUser/{username}")
@@ -58,13 +71,13 @@ public class UserController {
     @PostMapping("/updateUser/{username}")
     public String updateUser(@PathVariable("username") String username, User user) {
         userService.amendUser(username, user);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @GetMapping("/deleteUser/{username}")
     public String deleteUser(@PathVariable("username") String username) {
         userService.removeUser(username);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
 }
