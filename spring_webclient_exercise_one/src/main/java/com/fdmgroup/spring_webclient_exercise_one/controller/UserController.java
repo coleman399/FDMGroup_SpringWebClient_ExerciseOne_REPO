@@ -28,7 +28,7 @@ public class UserController {
         return "index";
     } 
 
-    @PostMapping("/")
+    @PostMapping({ "/", "index" })
     public String goToHomePage(@RequestParam("username") String username, @RequestParam("password") String password) {
         User user = userService.getUser(username);
         String checkedPassword = userService.checkPassword(user, password);
