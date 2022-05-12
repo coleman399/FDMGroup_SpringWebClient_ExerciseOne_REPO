@@ -18,9 +18,18 @@
 
 <body>
     <div class="container-fluid">
-        <h1>User</h1>
-        <div th:object="${user}">
-            <li class="list-group-item" th:text="${user}"></li>
+        <div class="row">
+            <div class="col-4">
+            </div>
+            <div class="col-4" style="text-align: center;">
+                <h1>User</h1>
+                <div th:object="${user}">
+                    <li class="list-group-item" th:text="${user}"></li><br>
+                    <a class="btn btn-primary" th:href="@{/}">HOME</a>
+                </div>    
+            </div>
+            <div class="col-4">
+            </div>
         </div>
     </div>
 </body>

@@ -18,14 +18,22 @@
 
 <body>
     <div class="container-fluid">
-        <h1>Create User</h1>
-        <form th:action="@{/createUser}" method="post" th:object="${user}">
-            <input type="text" th:field="*{firstName}" placeholder="First Name"><br>
-            <input type="text" th:field="*{lastName}" placeholder="Last Name"><br>
-            <input type="text" th:field="*{username}" placeholder="Username"><br>
-            <input type="text" th:field="*{password}" placeholder="Password"><br>
-            <input type="submit" value="CREATE">
-        </form>
+        <div class="row">
+            <div class="col-4">
+            </div>
+            <div class="col-4" style="text-align: center;">
+                <h1>Create User</h1>
+                <form th:action="@{/createUser}" method="post" th:object="${user}">
+                    <input class="form-control" type="text" th:field="*{firstName}" placeholder="First Name"><br>
+                    <input class="form-control" type="text" th:field="*{lastName}" placeholder="Last Name"><br>
+                    <input class="form-control" type="text" th:field="*{username}" placeholder="Username"><br>
+                    <input class="form-control" type="password" th:field="*{password}" placeholder="Password"><br>
+                    <input class="btn btn-primary" type="submit" value="CREATE"> <a class="btn btn-primary" th:href="@{/}">HOME</a>
+                </form>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
     </div>
 </body>
 
